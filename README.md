@@ -1,4 +1,4 @@
 # AssignmentSubmissionApplication
 App (backend) with Java (Spring Framework)
-## the first upload contain the alot of Securtity for App 
-App is Assignment Submission
+the first upload contain some of securiy for app
+###contain {Authentiaction,JWT Filter ,CustomPasswordEncoder,API}
