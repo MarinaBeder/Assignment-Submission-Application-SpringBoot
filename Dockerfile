@@ -15,46 +15,46 @@
 ##EXPOSE 8080
 ##ENTRYPOINT ["java","-cp","com.coderscampus.AssignmentSubmissionApplication"]
 #### Stage 1: Build the application
-###FROM adoptopenjdk/openjdk11:ubi as build
+FROM adoptopenjdk/openjdk11:ubi as build
 
 # Set the current working directory inside the image #mkdir app&&cd app
-###WORKDIR /app       
+WORKDIR /app       
 
 # Copy maven executable to the image
-###COPY mvnw .
+COPY mvnw .
 ###COPY .mvn .
 
 # Copy the pom.xml file
-###COPY pom.xml .
+COPY pom.xml .
 
 # Build all the dependencies in preparation to go offline. 
 # This is a separate step so the dependencies will be cached unless 
 # the pom.xml file has changed.
-###RUN mvnw dependency:go-offline -B
+RUN mvnw dependency:go-offline -B
 
 # Copy the project source
-###COPY src src
+COPY src src
 
 # Package the application
 ###RUN mvnw package
-####RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
+RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 
 #### Stage 2: A minimal docker image with command to run the app 
-####FROM adoptopenjdk/openjdk11:ubi
+FROM adoptopenjdk/openjdk11:ubi
 
-####ARG DEPENDENCY=/app/target/dependency
+ARG DEPENDENCY=/app/target/dependency
 
 # Copy project dependencies from the build stage
-####COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
-###COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
-####COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
+COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
+COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
  
-####ENTRYPOINT ["java","-cp","app:app/lib/*","com.coderscampus.AssignmentSubmissionApplication"]
+ENTRYPOINT ["java","-cp","app:app/lib/*","com.coderscampus.AssignmentSubmissionApplication"]
 #################################################################################
-FROM openjdk:8
-ADD target/com.coderscampus.AssignmentSubmission com.coderscampus.AssignmentSubmission
-EXPOSE 8080
-ENTRYPOINT ["java", "-cp", "com.coderscampus.AssignmentSubmission"]
+#FROM openjdk:8
+#ADD target/com.coderscampus.AssignmentSubmission com.coderscampus.AssignmentSubmission
+#EXPOSE 8080
+#ENTRYPOINT ["java", "-cp", "com.coderscampus.AssignmentSubmission"]
 
 
