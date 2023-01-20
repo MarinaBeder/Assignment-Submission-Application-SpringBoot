@@ -15,24 +15,14 @@
 ##EXPOSE 8080
 ##ENTRYPOINT ["java","-cp","com.coderscampus.AssignmentSubmissionApplication"]
 #### Stage 1: Build the application
-FROM adoptopenjdk/openjdk11:ubi as build
-
-# Set the current working directory inside the image #mkdir app&&cd app
-WORKDIR /app       
-
-# Copy maven executable to the image
-COPY mvnw .
-###COPY .mvn .
-
-# Copy the pom.xml file
-COPY pom.xml .
-
-# Build all the dependencies in preparation to go offline. 
-# This is a separate step so the dependencies will be cached unless 
-# the pom.xml file has changed.
-RUN mvnw dependency:go-offline -B
-
-# Copy the project source
+FROM openjdk:8-jdk-alpine
+RUN addgroup -S spring && adduser -S spring -G spring
+USER spring:spring
+ARG DEPENDENCY=target/dependency
+COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY ${DEPENDENCY}/META-INF /app/META-INF
+COPY ${DEPENDENCY}/BOOT-INF/classes /app
+ENTRYPOINT ["java","-cp","app:app/lib/*","AssignmentSubmission"]
 COPY src src
 
 # Package the application
