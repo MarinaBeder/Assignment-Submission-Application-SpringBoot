@@ -1,10 +1,21 @@
-version: '3.8'
-
+version: "3"
 services:
-  db:
-    image: postgres:alpine
+  employee-jdbc:
+    image: employee-jdbc
     ports:
-      - "5432:5432"
+      - "8080:8080"
+    networks:
+      - employee-mysql
+    depends_on:
+      - mysqldb
+ 
+  mysqldb:
+    image: mysql:8
+    networks:
+      - employee-mysql
     environment:
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: blog
+      - MYSQL_ROOT_PASSWORD=PVgvKakrfvPbguT1i7qU
+      - MYSQL_DATABASE=railway 
+
+networks:
+  employee-mysql:
