@@ -2,9 +2,9 @@
 # Build stage
 #
 FROM maven:3.6.3-jdk-8-slim AS build
+RUN mvn clean package -DskipTests
 COPY src /home/app/src
 COPY pom.xml /home/app
-RUN mvn clean package -DskipTests
 
 #
 # Package stage
