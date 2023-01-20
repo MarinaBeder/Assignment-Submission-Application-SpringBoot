@@ -10,10 +10,10 @@ services:
       - MYSQL_DATABASE=$railway
     ports:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
-
     volumes:
       - db:/var/lib/mysql
   app:
+ 
     depends_on:
       - mysqldb
     build: ./bezkoder-app
@@ -24,13 +24,11 @@ services:
 
     environment:
       SPRING_APPLICATION_JSON: '{
-        "spring.datasource.url":mysql://${{ root }}:${{ PVgvKakrfvPbguT1i7qU }}@${{ containers-us-west-92.railway.app }}:${{ 7006 }}/${{ railway }},
+       "spring.datasource.url"  : "mysql://${{ root }}:${{ PVgvKakrfvPbguT1i7qU }}@${{ containers-us-west-92.railway.app }}:${{ 7006 }}/${{ railway }}",        "spring.datasource.username" : "$root",
         "spring.datasource.username" : "$root",
         "spring.datasource.password" : "$PVgvKakrfvPbguT1i7qU",
-
-
-        "spring.jpa.properties.hibernate.dialect" :"org.hibernate.dialect.MySQL5InnoDBDialect",
-        "spring.jpa.hibernate.ddl-auto" :"update"
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+        "spring.jpa.hibernate.ddl-auto" : "update"
       }'
     volumes:
       - .m2:/root/.m2
