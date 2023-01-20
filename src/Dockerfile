@@ -11,10 +11,10 @@ RUN mvn clean package -DskipTests
 # Package stage
 #
 FROM openjdk:11-jdk-slim
-COPY --from=build /target/com.coderscampus.AssignmentSubmissionApplication-0.0.1-SNAPSHOT.jar com.coderscampus.AssignmentSubmissionApplication.jar
+COPY --from=build /target/com.coderscampus.AssignmentSubmissionApplication-0.0.1-SNAPSHOT com.coderscampus.AssignmentSubmissionApplication
 # ENV PORT=8080
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","com.coderscampus.AssignmentSubmissionApplication.jar"]
+ENTRYPOINT ["java","-cp","com.coderscampus.AssignmentSubmissionApplication"]
 # Set the current working directory inside the image
 #WORKDIR /app
 
