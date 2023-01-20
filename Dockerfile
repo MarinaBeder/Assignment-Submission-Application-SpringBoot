@@ -10,7 +10,7 @@ COPY . .
 #
 FROM openjdk:11-jdk-slim
 #COPY --from=build /target/AssignmentSubmission-0.0.1-SNAPSHOT.jar AssignmentSubmission.jar
-#ENV PORT=8080
+ENV PORT=8080
 #EXPOSE 8080
 #ENTRYPOINT ["java","-jar","AssignmentSubmission.jar"]
 
