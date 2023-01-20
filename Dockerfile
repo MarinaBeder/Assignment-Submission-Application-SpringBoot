@@ -10,7 +10,7 @@ COPY . .
 #
 FROM openjdk:11-jdk-slim
 COPY --from=build /target/AssignmentSubmission-0.0.1-SNAPSHOT.jar AssignmentSubmission.jar
-#ENV PORT=8080
+ENV PORT=8080
 #EXPOSE 8080
 ENTRYPOINT ["java","-jar","AssignmentSubmission.jar"]
 
@@ -36,4 +36,4 @@ ENV MYSQL_ROOT_PASSWORD=${PVgvKakrfvPbguT1i7qU}
 #RUN sed -i 's/MYSQL_DATABASE/'$MYSQL_DATABASE'/g' /etc/mysql/data.sql
 #RUN cp /etc/mysql/data.sql /docker-entrypoint-initdb.d
 
-EXPOSE 8080
+#EXPOSE 8080
