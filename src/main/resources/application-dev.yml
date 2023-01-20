@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: mysql://${{ root }}:${{ PVgvKakrfvPbguT1i7qU }}@${{ containers-us-west-92.railway.app }}:${{ 7006 }}/${{ railway }}
+    url:jdbc:mysql://${{ root }}:${{ MYSQLPASSWORD }}@${{ containers-us-west-92.railway.app }}:${{ 7006 }}/${{ railway }}
     username: root
     password: PVgvKakrfvPbguT1i7qU
 
