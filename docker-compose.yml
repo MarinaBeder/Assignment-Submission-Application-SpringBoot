@@ -6,10 +6,11 @@ services:
     restart: unless-stopped
     env_file: ./.env
     environment:
-      - MYSQL_ROOT_PASSWORD=PVgvKakrfvPbguT1i7qU
-      - MYSQL_DATABASE=railway
+      - MYSQL_ROOT_PASSWORD=$PVgvKakrfvPbguT1i7qU
+      - MYSQL_DATABASE=$railway
     ports:
-      - $MYSQLDB_LOCAL_PORT:8080
+      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+
     volumes:
       - db:/var/lib/mysql
   app:
@@ -19,12 +20,15 @@ services:
     restart: on-failure
     env_file: ./.env
     ports:
-      - $SPRING_LOCAL_PORT:8080
+      - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
+
     environment:
       SPRING_APPLICATION_JSON: '{
         "spring.datasource.url":mysql://${{ root }}:${{ PVgvKakrfvPbguT1i7qU }}@${{ containers-us-west-92.railway.app }}:${{ 7006 }}/${{ railway }},
-        "spring.datasource.username" :"root",
-        "spring.datasource.password" :"PVgvKakrfvPbguT1i7qU",
+        "spring.datasource.username" : "$root",
+        "spring.datasource.password" : "$PVgvKakrfvPbguT1i7qU",
+
+
         "spring.jpa.properties.hibernate.dialect" :"org.hibernate.dialect.MySQL5InnoDBDialect",
         "spring.jpa.hibernate.ddl-auto" :"update"
       }'
