@@ -4,6 +4,6 @@ spring:
     username:root
     password:PVgvKakrfvPbguT1i7qU
 
-  sql:
+  MySQL:
     init:
       mode: always
