@@ -1,5 +1,5 @@
 FROM openjdk:8-jdk-alpine
-mkdir app
+WORKDIR /app 
 RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
 ARG DEPENDENCY=target/dependency
