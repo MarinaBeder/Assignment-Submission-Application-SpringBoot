@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:tc:postgresql:14-alpine:///spring-blog
+    url: jdbc:mysql://${{ root }}:${{ PVgvKakrfvPbguT1i7qU }}@${{ containers-us-west-92.railway.app }}:${{ 7006 }}/${{ railway }}///spring-blog
   sql:
     init:
       mode: always
