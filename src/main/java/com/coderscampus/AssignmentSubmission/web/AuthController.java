@@ -61,7 +61,7 @@ private  JwtUtil jwtUtili;
         }
     }
     @GetMapping("view")
-    public void hh() {
+    public String hh() {
     	return"ffffffffffffffffffff\n";
     	
     }
