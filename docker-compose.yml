@@ -25,8 +25,8 @@ services:
     environment:
       SPRING_APPLICATION_JSON: '{
        "spring.datasource.url"  : "mysql://${{ root }}:${{ PVgvKakrfvPbguT1i7qU }}@${{ containers-us-west-92.railway.app }}:${{ 7006 }}/${{ railway }}",        "spring.datasource.username" : "$root",
-        "spring.datasource.username" : "$root",
-        "spring.datasource.password" : "$PVgvKakrfvPbguT1i7qU",
+        "spring.datasource.username" : "root",
+        "spring.datasource.password" : "PVgvKakrfvPbguT1i7qU",
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
         "spring.jpa.hibernate.ddl-auto" : "update"
       }'
