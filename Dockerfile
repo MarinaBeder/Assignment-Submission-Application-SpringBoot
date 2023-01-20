@@ -31,9 +31,9 @@ ENV MYSQL_USER=root
 ENV MYSQL_PASSWORD=PVgvKakrfvPbguT1i7qU
 ENV MYSQL_ROOT_PASSWORD=PVgvKakrfvPbguT1i7qU
 
-ADD data.sql /etc/mysql/data.sql
+#ADD data.sql /etc/mysql/data.sql
 
-#RUN sed -i 's/MYSQL_DATABASE/'$MYSQL_DATABASE'/g' /etc/mysql/data.sql
-#RUN cp /etc/mysql/data.sql /docker-entrypoint-initdb.d
+RUN sed -i 's/MYSQL_DATABASE/'$MYSQL_DATABASE'/g' /etc/mysql/data.sql
+RUN cp /etc/mysql/data.sql /docker-entrypoint-initdb.d
 
 EXPOSE 8080
