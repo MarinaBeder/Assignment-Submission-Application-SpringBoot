@@ -10,7 +10,7 @@ management:
 
 info:
   application:
-    name: spring-blog
+    name: AssignmentSubmissionApplication
     description: A blog with articles about The Spring Framework.
     author: Dan Vega
     version: '@project.version@'
