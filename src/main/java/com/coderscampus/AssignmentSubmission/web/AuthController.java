@@ -62,7 +62,7 @@ private  JwtUtil jwtUtili;
     }
     @PostMapping("view")
     public void hh() {
-    	System.out.println("ffffffffffffffffffff\n");
+    	return("ffffffffffffffffffff\n");
     	
     }
 
