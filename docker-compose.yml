@@ -6,8 +6,8 @@ services:
     restart: unless-stopped
     env_file: ./.env
     environment:
-      - MYSQL_ROOT_PASSWORD=$PVgvKakrfvPbguT1i7qU
-      - MYSQL_DATABASE=$railway
+      - MYSQL_ROOT_PASSWORD=PVgvKakrfvPbguT1i7qU
+      - MYSQL_DATABASE=railway
     ports:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
     volumes:
