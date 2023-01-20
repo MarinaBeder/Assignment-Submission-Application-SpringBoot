@@ -11,5 +11,6 @@ RUN mvn clean package -DskipTests
 FROM openjdk:8-jdk-alpine
 RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
-COPY --from=build /home/app/target/AssignmentSubmissionApplication.war AssignmentSubmissionApplication.war
-ENTRYPOINT ["java","-jar","AssignmentSubmissionApplication.war"]
+ARG war_FILE=/home/app/target/*.war
+COPY ${war_FILE} app.war
+ENTRYPOINT ["java","-jar","/app.war"]
