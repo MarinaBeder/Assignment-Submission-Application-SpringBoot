@@ -9,7 +9,7 @@ RUN mvn clean package -DskipTests
 # Package stage
 #
 FROM openjdk:11-jdk-slim
-COPY --from=build /target/AssignmentSubmission-0.0.1-SNAPSHOT.jar AssignmentSubmission.jar
+COPY --from=build /target/com.coderscampus.AssignmentSubmission-0.0.1-SNAPSHOT.jar com.coderscampus.AssignmentSubmission.jar
 # ENV PORT=8080
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","AssignmentSubmission.jar"]
