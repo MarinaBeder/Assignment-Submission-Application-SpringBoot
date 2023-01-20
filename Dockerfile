@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy maven executable to the image
 COPY mvnw .
-COPY .mvn .mvn
+#COPY .mvn .mvn
 
 # Copy the pom.xml file
 COPY pom.xml .
