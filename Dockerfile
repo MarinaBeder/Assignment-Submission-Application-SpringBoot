@@ -22,7 +22,7 @@ WORKDIR /app
 
 # Copy maven executable to the image
 COPY mvnw .
-COPY .mvn
+COPY .mvn .
 
 # Copy the pom.xml file
 COPY pom.xml .
