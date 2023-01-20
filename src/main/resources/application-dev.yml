@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/blog
-    username: postgres
-    password: password
+    url: jdbc:mysql://${{ root }}:${{ PVgvKakrfvPbguT1i7qU }}@${{ containers-us-west-92.railway.app }}:${{ 7006 }}/${{ railway }}
+    username: root
+    password: PVgvKakrfvPbguT1i7qU
 
   sql:
     init:
