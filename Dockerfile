@@ -16,5 +16,5 @@ USER spring:spring
 #ENTRYPOINT ["java","-jar","AssignmentSubmission.war"]
 FROM maven:3.6.0-jdk-11-slim 
 ARG JAR_FILE
-COPY target/${JAR_FILE} nbd.jar
-ENTRYPOINT ["java","-jar","nbd.jar"]
+COPY target/${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","app.jar"]
