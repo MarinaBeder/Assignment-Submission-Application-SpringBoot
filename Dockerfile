@@ -19,7 +19,7 @@ RUN mvn clean package -DskipTests
 #COPY . .
 #ENTRYPOINT ["java","-jar","src.jar"]
 FROM openjdk:11-jdk-slim
-COPY --from=build/target/AssignmentSubmission-0.0.1-SNAPSHOT.war AssignmentSubmission.war
+COPY --from=build /target/AssignmentSubmission-0.0.1-SNAPSHOT.war AssignmentSubmission.war
 # ENV PORT=8080
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","AssignmentSubmission.war"]
