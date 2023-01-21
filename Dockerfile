@@ -12,5 +12,5 @@ FROM openjdk:8-jdk-alpine
 RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
 ARG war_FILE=/home/app/target/*.war
-COPY app.war
+COPY ${war_FILE} app.war
 ENTRYPOINT ["java","-jar","/app.war"]
