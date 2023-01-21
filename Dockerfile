@@ -11,6 +11,10 @@ RUN mvn clean package -DskipTests
 FROM openjdk:8-jdk-alpine
 RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
-ARG war_FILE=/home/app/*.war
-COPY . .
-ENTRYPOINT ["java","-jar","AssignmentSubmission.war"]
+#ARG war_FILE=/home/app/*.war
+#COPY . .
+#ENTRYPOINT ["java","-jar","AssignmentSubmission.war"]
+FROM maven:3.6.0-jdk-11-slim 
+ARG JAR_FILE
+COPY target/${JAR_FILE} nbd.jar
+ENTRYPOINT ["java","-jar","nbd.jar"]
