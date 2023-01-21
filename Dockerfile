@@ -17,4 +17,4 @@ USER spring:spring
 FROM maven:3.6.0-jdk-11-slim 
 ARG JAR_FILE
 COPY . .
-ENTRYPOINT ["java","-jar","AssignmentSubmission.jar"]
+ENTRYPOINT ["java","-jar","src.jar"]
