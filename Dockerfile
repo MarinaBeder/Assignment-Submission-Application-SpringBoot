@@ -13,4 +13,4 @@ RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
 ARG war_FILE=/home/app/*.war
 COPY . .
-ENTRYPOINT ["java","-jar","/app.war"]
+ENTRYPOINT ["java","-jar","/AssignmentSubmissionApplication.war"]
