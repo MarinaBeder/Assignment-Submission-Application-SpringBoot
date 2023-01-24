@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.coderscampus.AssignmentSubmission.domain.User;
 import com.coderscampus.AssignmentSubmission.dto.AuthCredentialsRequest;
@@ -60,7 +61,7 @@ private  JwtUtil jwtUtili;
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
-    @PostMapping("view")
+    @GetMapping("view")
     public String hh() {
     	return "ffffffffffffffffffff";
     	
