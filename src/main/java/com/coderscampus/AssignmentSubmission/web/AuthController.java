@@ -39,7 +39,7 @@ private  JwtUtil jwtUtili;
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
     }*/
-@CrossOrigin
+//@CrossOrigin
     @PostMapping("login")
     public ResponseEntity<?> login(@RequestBody  AuthCredentialsRequest request) {
         try {
@@ -61,7 +61,7 @@ private  JwtUtil jwtUtili;
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-    }@CrossOrigin
+    }//@CrossOrigin
     @GetMapping("view")
     public String hh() {
     	return "ffffffffffffffffffff";
