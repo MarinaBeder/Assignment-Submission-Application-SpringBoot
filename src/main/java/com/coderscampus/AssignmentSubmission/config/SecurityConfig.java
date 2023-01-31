@@ -63,7 +63,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		                }
 		            )
 		            .and();
-		        http.cors(); 
 
    http. authorizeRequests()
    .antMatchers("/api/cauth/**").permitAll()

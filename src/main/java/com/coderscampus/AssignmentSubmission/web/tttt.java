@@ -31,48 +31,13 @@ import com.coderscampus.AssignmentSubmission.util.JwtUtil;
 @RestController 
 @Validated
 ///@Component
-@RequestMapping( "api/cauth")
-public class AuthController  {
-@Autowired
-	private  AuthenticationManager authenticationManagerr ;
-@Autowired   
-private  JwtUtil jwtUtili;
-
-   /* public AuthController(AuthenticationManager authenticationManager,JwtUtil jwtUtil) {
-        this.authenticationManager = authenticationManager;
-        this.jwtUtil = jwtUtil;
-    }*/
-
-    @PostMapping("login")
-    public ResponseEntity<?> login(@RequestBody  AuthCredentialsRequest request) {
-        try {
-            Authentication authenticate = authenticationManagerr
-                .authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                        request.getUsername(), request.getPassword()
-                    )
-                );
-
-            User user = (User) authenticate.getPrincipal();
- user.setPassword(null);//to donot show password in postman for security
-            return ResponseEntity.ok()
-                .header(
-                    HttpHeaders.AUTHORIZATION,
-                    jwtUtili.generateToken(user)
-                )
-                .body(user);
-        } catch (BadCredentialsException ex) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-    }
-    @PostMapping("view")
-    public String hh() {
+@RequestMapping( "api")
+public class tttt {
+	
+    @PostMapping("view1")
+    public String hhh() {
     	return "ffffffffffffffffffff";
     	
     }
 	
-  }
-
-
-
-
+}

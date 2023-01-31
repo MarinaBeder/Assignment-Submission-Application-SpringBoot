@@ -7,17 +7,13 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -29,21 +25,14 @@ public class User implements UserDetails{
 	 */
 	private static final long serialVersionUID = 7321374061017039662L;
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	
 	private Long id;
-	
 	private LocalDate cohortStartDate;
-	
 	private String username;
-	@JsonIgnore
 	private String password;
-	@OneToMany(fetch=FetchType.EAGER,mappedBy="user")
-	@JsonIgnore
-	private List<Authority>authorities=new ArrayList<>();
+	//private List<Authority>authorities=new ArrayList<>();
 	//private List<Assignment>assignment=new ArrayList<>();
 	
 	
-
 	public Long getId() {
 		return id;
 	}
@@ -74,9 +63,6 @@ public class User implements UserDetails{
 		List<GrantedAuthority>roles =new ArrayList<>();
 		roles.add(new Authority("ROLE_STUDENT"));
 		return roles;
-	}	
-	public void setAuthorities(List<Authority> authorities) {
-		this.authorities = authorities;
 	}
 	
 	
