@@ -63,9 +63,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		                }
 		            )
 		            .and();
+		        http.cors(); 
 
    http. authorizeRequests()
    .antMatchers("/api/cauth/**").permitAll()
+   .antMatchers("/api/assignments/**").permitAll()
+
 		  .anyRequest().authenticated();
   
    // add filter :inject our filter  before usernamepasswordauthentivcationfilter
