@@ -1,11 +1,14 @@
 package com.coderscampus.AssignmentSubmission.domain;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity//will create tavle called assignment (based on class name)
 //@Table(name="asssignment")
@@ -14,14 +17,14 @@ public class Assignment {
 	private Long id;
 	
 	private String status;
-	
+	@Column(updatable = true)
 	private String githupUrl;
-	
+	@Column(updatable = true)
 	private String branch;
 	
 	private String codeReviewVideoUrl;
-	
-@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
+    
 	private User user;
 	
 	
