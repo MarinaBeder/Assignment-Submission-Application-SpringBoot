@@ -26,7 +26,7 @@ import com.coderscampus.AssignmentSubmission.util.JwtUtil;
 @RestController 
 @Validated
 ///@Component
-@RequestMapping( "https://shy-jade-panda-hem.cyclic.app/api/cauth")
+@RequestMapping( "api/cauth")
 public class AuthController  {
 @Autowired
 	private  AuthenticationManager authenticationManagerr ;
