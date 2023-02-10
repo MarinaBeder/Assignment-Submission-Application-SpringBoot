@@ -23,6 +23,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.coderscampus.AssignmentSubmission.repository.UserRepository;
 import com.coderscampus.AssignmentSubmission.util.JwtUtil;
 
+import io.jsonwebtoken.ExpiredJwtException;
+
 	@Component
 	public class JwtFilter extends OncePerRequestFilter {
          @Autowired
@@ -41,7 +43,8 @@ this.userRepo = userRepo;
 	                                    HttpServletResponse response,
 	                                    FilterChain chain)
 	            throws ServletException, IOException {
-	        // Get authorization header and validate
+	    	 UserDetails userDetails;
+	       try { // Get authorization header and validate
 	        final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
 	        if (!StringUtils.hasText(header)||(StringUtils.hasText(header) && !header.startsWith("Bearer ")) ){
 	            chain.doFilter(request, response);
@@ -49,16 +52,24 @@ this.userRepo = userRepo;
 	        }	        final String token = header.split(" ")[1].trim();
 
 	        // Get user identity and set it on the spring security context
-	        UserDetails userDetails = userRepoo
+	         userDetails = userRepoo
 		            .findByUsername(jwtUtill.getUsernameFormToken(token))
 		            .orElse(null);
 
 	        // Get jwt token and validate
-	        if (!jwtUtill.vaildateToken(token,userDetails)) {
+	      /*  if (!jwtUtill.vaildateToken(token,userDetails)) {
 	            chain.doFilter(request, response);
 	            return;
+	        }*/
 	        }
-
+	        catch (ExpiredJwtException e) {
+		    	  chain.doFilter(request, response);
+		            return;
+		            /*response.setStatus(HttpStatus.UNAUTHORIZED.value());
+		            response.getWriter().write(e.getMessage());
+		            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+		            return;*/
+		        }
 	       
 
 	        UsernamePasswordAuthenticationToken
