@@ -60,19 +60,7 @@ private  JwtUtil jwtUtili;
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
-	@GetMapping("/validate")
-   public ResponseEntity<?> validateToken1(@RequestParam String token,@ AuthenticationPrincipal User user) throws ExpiredJwtException 
-   {	//org.jboss.logging.Logger logger = LoggerFactory.logger(JwtUtil.class);
 
-	   try {
-	   Boolean isTokenValid= jwtUtili.vaildateToken(token, user);
-        return ResponseEntity.ok(isTokenValid);
-	   }
-	  
-   catch (ExpiredJwtException ex) {
-	   return ResponseEntity.ok(false);
-          } 
-}
     @PostMapping("view")
     public String hh() {
     	return "ffffffffffffffffffff";
