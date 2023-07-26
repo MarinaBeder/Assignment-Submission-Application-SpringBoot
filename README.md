@@ -6,7 +6,7 @@
 ### ----- If you want to try this app on localhost -----
 #### Go to application properties : 
 ####                               1- put your database name
-####                               1- put username of database
-####                               1- put password of database
+####                               2- put username of database
+####                               3- put password of database
 
 
