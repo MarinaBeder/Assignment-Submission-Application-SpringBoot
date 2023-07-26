@@ -11,44 +11,54 @@ import org.springframework.security.core.GrantedAuthority;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Authority implements GrantedAuthority  {
+public class Authority implements GrantedAuthority {
 
-private static final long serialVersionUID = -8729033229925730639L;
-@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private static final long serialVersionUID = -8729033229925730639L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-private String authority;
-@ManyToOne(optional = false)
- private User user;
- public Authority() {}
-public Authority (String authority) {
 
-	this.authority=authority;
-}
-public Long getId() {
+	private String authority;
+	@ManyToOne(optional = false)
+	private User user;
 
-	return id;
-}
-public void setId(Long id) {
+	public Authority() {
+	}
 
-	this.id = id;
-}
-public String getAuthority() {
+	public Authority(String authority) {
 
-	return authority;
-}
-public void setAuthority(String authority) {
+		this.authority = authority;
+	}
 
-	this.authority = authority;
-}
+	public Long getId() {
 
-public User getUser() {
+		return id;
+	}
 
-	return user;
-}
-public void setUser(User user) {
+	public void setId(Long id) {
 
-	this.user = user;
-}
- 
- 
+		this.id = id;
+	}
+
+	@Override
+	public String getAuthority() {
+
+		return authority;
+	}
+
+	public void setAuthority(String authority) {
+
+		this.authority = authority;
+	}
+
+	public User getUser() {
+
+		return user;
+	}
+
+	public void setUser(User user) {
+
+		this.user = user;
+	}
+
 }

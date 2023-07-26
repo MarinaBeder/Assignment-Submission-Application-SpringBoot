@@ -2,7 +2,6 @@ package com.coderscampus.AssignmentSubmission.config;
 
 import javax.servlet.http.HttpServletResponse;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,63 +17,38 @@ import com.coderscampus.AssignmentSubmission.filter.JwtFilter;
 import com.coderscampus.AssignmentSubmission.util.CustomPasswordEncoder;
 
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 
-		private JwtFilter jwtFilter;//ourfilter
+	private JwtFilter jwtFilter;
 	@Autowired
 	private UserDetailsService userDetailsService;
 	@Autowired
 	private CustomPasswordEncoder customPasswordEncoder;
-	@Override @Bean
-	public AuthenticationManager authenticationManagerBean ()throws Exception{
+
+	@Override
+	@Bean
+	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService)
-		.passwordEncoder(customPasswordEncoder.getPasswordEncoder());
+		auth.userDetailsService(userDetailsService).passwordEncoder(customPasswordEncoder.getPasswordEncoder());
 	}
-	
+
 	@Override
-	//what access should you have in this apps and that is where this next configure methid comes from
 	protected void configure(HttpSecurity http) throws Exception {
-		// TODO Auto-generated method stub
-	//	super.configure(http);
-	
-		        // Enable CORS and disable CSRF
-		        http = http.cors().and().csrf().disable();
+		http = http.cors().and().csrf().disable();
+		http = http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and();
+		http = http.exceptionHandling().authenticationEntryPoint((request, response, ex) -> {
+			response.sendError(HttpServletResponse.SC_UNAUTHORIZED, ex.getMessage());
+		}).and();
+		http.cors();
 
-		        // Set session management to stateless
-		        http = http
-		            .sessionManagement()
-		            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		            .and();
+		http.authorizeRequests().antMatchers("/api/auth/**").permitAll().anyRequest().authenticated();
+		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
-		        // Set unauthorized requests exception handler
-		        http = http
-		            .exceptionHandling()
-		            .authenticationEntryPoint(
-		                (request, response, ex) -> {
-		                    response.sendError(
-		                        HttpServletResponse.SC_UNAUTHORIZED,
-		                        ex.getMessage()
-		                    );
-		                }
-		            )
-		            .and();
-		        http.cors(); 
-
-   http. authorizeRequests()
-   .antMatchers("/api/cauth/**").permitAll()
-   .antMatchers("/api/assignments/**").permitAll()
-
-		  .anyRequest().authenticated();
-  
-   // add filter :inject our filter  before usernamepasswordauthentivcationfilter
-  http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-		  
 	}
 
-	
 }
