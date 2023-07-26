@@ -1,4 +1,5 @@
 # AssignmentSubmissionApplication
 ## Java (Spring boot Framework)
-### the first upload contain some of securiy for App
-#### contain {API , DataBase (mySql) , Authentiaction , JWT Filter}
+### contain {API, DataBase (MySQL), Authentication }
+#### student can submit (his/her) assignment code, can update, can show all (his/her) submitted assignment
+#### code Reviewer can review the student's assignment and can leave comments for the student and the student can answer to code reviewer
